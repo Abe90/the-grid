@@ -342,12 +342,15 @@ Example:
              * @fires TheGrid#move
              */
             _handleMove(e) {
-                let player = e.target,
+                let player = e.currentTarget,
                     state = e.detail.state;
 
                 // Only handle direct children of the grid.
                 if (Polymer.dom(player).parentNode !== this) return;
 
+                // Disabled attribute
+                if (player.hasAttribute("disabled")) return;
+                
                 // Create a placeholder if not present.
                 if (!this.placeholder) {
                     this.placeholder = document.createElement('div');
